@@ -18,7 +18,7 @@ var showHideMemory = {};
             }
             else if(typeof args === 'object'){
                 const query = document.querySelectorAll(this.selector);
-                dataArgs = Object.entries(args);
+                const dataArgs = Object.entries(args);
                 query.forEach((element)=>{
                     dataArgs.forEach(([key, value])=>{
                         element.dataset[key] = value;
@@ -37,7 +37,7 @@ var showHideMemory = {};
             }
             else if(typeof args === 'object'){
                 const query = document.querySelectorAll(this.selector);
-                cssArgs = Object.entries(args);
+                const cssArgs = Object.entries(args);
                 query.forEach((element)=>{
                     cssArgs.forEach(([property, value])=>{
                         element.style[property] = value;
