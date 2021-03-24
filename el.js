@@ -88,5 +88,20 @@ var showHideMemory = {};
         xhttp.setRequestHeader("Content-type", ct);
         xhttp.send(new URLSearchParams(data),toString());
     }
+    el.cookie = (key, value, maxAge)=>{
+        if(typeof value !== 'undefined'){
+            document.cookie = encodeURIComponent(key)+"="+encodeURIComponent(value)+"; path=/; max-age="+(value == null?0:maxAge);
+            return true;
+        }
+        var cookieReturn = "";
+        var cookieJar = document.cookie.split('; ');
+        cookieJar.forEach((cookie)=>{
+            var cookieFlavor = cookie.split('=');
+            if(decodeURIComponent(cookieFlavor[0]) == key){
+                cookieReturn = decodeURIComponent(cookieFlavor[1]);
+            }
+        });
+        return cookieReturn;
+    }
     window.el = el;
 }());
