@@ -29,8 +29,8 @@
         xhttp.send();
     }
     el.post = (url, data, fn, contentType)=>{
-        let ct = "application/x-www-form-urlencoded";
-        if(contentType !== "undefined"){
+        let ct = "application/x-www-form-urlencoded; charset=UTF-8";
+        if(typeof contentType !== "undefined"){
             ct = contentType;
         }
         let xhttp = new XMLHttpRequest();
