@@ -11,6 +11,25 @@ var showHideMemory = {};
             });
             return this;
         },
+        data:function(args){
+            if(typeof args === 'string'){
+                const query = document.querySelectorAll(this.selector);
+                return query[0].dataset[args];
+            }
+            else if(typeof args === 'object'){
+                const query = document.querySelectorAll(this.selector);
+                dataArgs = Object.entries(args);
+                query.forEach((element)=>{
+                    dataArgs.forEach(([key, value])=>{
+                        element.dataset[key] = value;
+                        if(value == null){
+                            delete element.dataset[key];
+                        }
+                    });
+                });
+                return this;
+            } 
+        },
         css:function(args){
             if(typeof args === 'string'){
                 const query = document.querySelectorAll(this.selector);
