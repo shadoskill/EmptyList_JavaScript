@@ -39,7 +39,7 @@
         }
         xhttp.open("POST", url, true);
         xhttp.setRequestHeader("Content-type", ct);
-        xhttp.send(data);
+        xhttp.send(new URLSearchParams(data),toString());
     }
     window.el = el;
 }());
