@@ -56,6 +56,9 @@ var showHideMemory = {};
             this.css({'display':((savedDisplayType != "")?savedDisplayType:"block")});
             delete showHideMemory[this.selector];
             return this;
+        },
+        submit:function(){
+            document.querySelectorAll(this.selector).submit();
         }
     };
 
@@ -75,8 +78,11 @@ var showHideMemory = {};
         xhttp.open("GET", url, true);
         xhttp.send();
     }
-    el.post = (url, data, fn, contentType)=>{
+    el.post = (url, data, fn, escape, contentType)=>{
         let ct = "application/x-www-form-urlencoded; charset=UTF-8";
+        if(typeof escape === "undefined"){
+            data = new URLSearchParams(data).toString();
+        }
         if(typeof contentType !== "undefined"){
             ct = contentType;
         }
@@ -86,7 +92,7 @@ var showHideMemory = {};
         }
         xhttp.open("POST", url, true);
         xhttp.setRequestHeader("Content-type", ct);
-        xhttp.send(new URLSearchParams(data),toString());
+        xhttp.send(data);
     }
     el.cookie = (key, value, maxAge)=>{
         if(typeof value !== 'undefined'){
