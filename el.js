@@ -2,24 +2,22 @@ var showHideMemory = {};
 (function(){
     var constructor = function(selector){
         this.selector = selector;
+        this.query = document.querySelectorAll(this.selector);
     };
     constructor.prototype = {
         on:function(event, fn){
-            const query = document.querySelectorAll(this.selector);
-            query.forEach((element)=>{
+            this.query.forEach((element)=>{
                 element.addEventListener(event, fn);
             });
             return this;
         },
         data:function(args){
             if(typeof args === 'string'){
-                const query = document.querySelectorAll(this.selector);
-                return query[0].dataset[args];
+                return this.query[0].dataset[args];
             }
             else if(typeof args === 'object'){
-                const query = document.querySelectorAll(this.selector);
                 const dataArgs = Object.entries(args);
-                query.forEach((element)=>{
+                this.query.forEach((element)=>{
                     dataArgs.forEach(([key, value])=>{
                         element.dataset[key] = value;
                         if(value == null){
@@ -32,13 +30,11 @@ var showHideMemory = {};
         },
         css:function(args){
             if(typeof args === 'string'){
-                const query = document.querySelectorAll(this.selector);
-                return query[0].style[args];
+                return this.query[0].style[args];
             }
             else if(typeof args === 'object'){
-                const query = document.querySelectorAll(this.selector);
                 const cssArgs = Object.entries(args);
-                query.forEach((element)=>{
+                this.query.forEach((element)=>{
                     cssArgs.forEach(([property, value])=>{
                         element.style[property] = value;
                     });
@@ -58,33 +54,29 @@ var showHideMemory = {};
             return this;
         },
         submit:function(){
-            document.querySelectorAll(this.selector).submit();
+            this.query.submit();
             return this;
         },
         html:function(html){
-            const query = document.querySelectorAll(this.selector);
-            query.forEach((element)=>{
+            this.query.forEach((element)=>{
                 element.innerHTML = html;
             });
             return this;
         },
         text:function(text){
-            const query = document.querySelectorAll(this.selector);
-            query.forEach((element)=>{
+            this.query.forEach((element)=>{
                 element.innerText = text;
             });
             return this;
         },
         addClass:function(className){
-            const query = document.querySelectorAll(this.selector);
-            query.forEach((element)=>{
+            this.query.forEach((element)=>{
                 element.classList.add(className);
             });
             return this;
         },
         removeClass:function(className){
-            const query = document.querySelectorAll(this.selector);
-            query.forEach((element)=>{
+            this.query.forEach((element)=>{
                 element.classList.remove(className);
             });
             return this;
