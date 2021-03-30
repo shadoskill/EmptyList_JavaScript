@@ -74,6 +74,20 @@ var showHideMemory = {};
                 element.innerText = text;
             });
             return this;
+        },
+        addClass:function(className){
+            const query = document.querySelectorAll(this.selector);
+            query.forEach((element)=>{
+                element.classList.add(c);
+            });
+            return this;
+        },
+        removeClass:function(className){
+            const query = document.querySelectorAll(this.selector);
+            query.forEach((element)=>{
+                element.classList.remove(c);
+            });
+            return this;
         }
     };
 
