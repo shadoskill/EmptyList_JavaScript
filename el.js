@@ -59,6 +59,21 @@ var showHideMemory = {};
         },
         submit:function(){
             document.querySelectorAll(this.selector).submit();
+            return this;
+        },
+        html:function(html){
+            const query = document.querySelectorAll(this.selector);
+            query.forEach((element)=>{
+                element.innerHTML = html;
+            });
+            return this;
+        },
+        text:function(text){
+            const query = document.querySelectorAll(this.selector);
+            query.forEach((element)=>{
+                element.innerText = text;
+            });
+            return this;
         }
     };
 
