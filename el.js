@@ -137,5 +137,16 @@ var showHideMemory = {};
     el.reload = ()=>{
         location.reload();
     }
+    el.urlParam = (param)=>{
+        var searchParams = new URLSearchParams(location.search);
+        if(typeof param === "undefined"){
+            var paramObj = {};
+            searchParams.forEach((value, key)=>{
+                paramObj[key] = value;
+            });
+            return paramObj;
+        }
+        return searchParams.get(param);
+    }
     window.el = el;
 }());
