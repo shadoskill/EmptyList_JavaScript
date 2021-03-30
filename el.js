@@ -80,6 +80,15 @@ var showHideMemory = {};
                 element.classList.remove(className);
             });
             return this;
+        },
+        insert:function(position, html){
+            this.query.forEach((element)=>{
+                element.insertAdjacentHTML(position, html);
+            });
+            return this;
+        },
+        append:function(html){
+            return this.insert("beforeend", html);
         }
     };
 
