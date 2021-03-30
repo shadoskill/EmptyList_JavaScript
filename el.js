@@ -130,5 +130,12 @@ var showHideMemory = {};
         });
         return cookieReturn;
     }
+    el.location = (url)=>{
+        if(typeof url === 'undefined') return location.href;
+        location.href = url;
+    }
+    el.reload = ()=>{
+        location.reload();
+    }
     window.el = el;
 }());
