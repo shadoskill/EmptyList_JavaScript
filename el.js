@@ -1,6 +1,6 @@
 var showHideMemory = {};
 (function(){
-    var constructor = function (selector){
+    var constructor = function(selector){
         this.selector = selector;
     };
     constructor.prototype = {
@@ -78,14 +78,14 @@ var showHideMemory = {};
         addClass:function(className){
             const query = document.querySelectorAll(this.selector);
             query.forEach((element)=>{
-                element.classList.add(c);
+                element.classList.add(className);
             });
             return this;
         },
         removeClass:function(className){
             const query = document.querySelectorAll(this.selector);
             query.forEach((element)=>{
-                element.classList.remove(c);
+                element.classList.remove(className);
             });
             return this;
         }
