@@ -54,7 +54,7 @@ var showHideMemory = {};
             return this;
         },
         submit:function(){
-            this.query.submit();
+            this.query[0].submit();
             return this;
         },
         html:function(html){
