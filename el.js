@@ -58,12 +58,18 @@ var showHideMemory = {};
             return this;
         },
         html:function(html){
+            if(typeof html === "undefined"){
+                return this.query[0].innerHTML;
+            }
             this.query.forEach((element)=>{
                 element.innerHTML = html;
             });
             return this;
         },
         text:function(text){
+            if(typeof text === "undefined"){
+                return this.query[0].innerText;
+            }
             this.query.forEach((element)=>{
                 element.innerText = text;
             });
