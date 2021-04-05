@@ -1,0 +1,20 @@
+el-alert-container
+{
+    display: flex;
+    position: absolute;
+    margin: 10px;
+    width: calc(100vw - 20px);
+    height: 96px;
+    background-color: grey;
+    z-index: 999;
+    left: 0;
+    justify-content: center;
+}
+el-alert
+{ 
+    display: block;
+    background-color: green;
+    height: 100%;
+    width: 80%;
+    max-width: 768px;
+}

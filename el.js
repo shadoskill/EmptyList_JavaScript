@@ -89,18 +89,24 @@ var showHideMemory = {};
         },
         append:function(html){
             return this.insert("beforeend", html);
+        },
+        remove:function(){
+            this.query.forEach((element)=>{
+                element.remove();
+            });
+            return this;
         }
     };
 
-    var el = (selector)=>{
+    var el = function(selector){
         return new constructor(selector);
     };
-    el.ready = (fn)=>{
+    el.ready = function(fn){
         if(typeof fn === 'function'){
             document.addEventListener("DOMContentLoaded", fn);
         }        
     }
-    el.get = (url, fn)=>{
+    el.get = function(url, fn){
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = () => {
             if(xhttp.readyState == 4) fn(xhttp.response);
@@ -108,7 +114,7 @@ var showHideMemory = {};
         xhttp.open("GET", url, true);
         xhttp.send();
     }
-    el.post = (url, data, fn, escape, contentType)=>{
+    el.post = function(url, data, fn, escape, contentType){
         let ct = "application/x-www-form-urlencoded; charset=UTF-8";
         if(typeof escape === "undefined"){
             data = new URLSearchParams(data).toString();
@@ -124,7 +130,7 @@ var showHideMemory = {};
         xhttp.setRequestHeader("Content-type", ct);
         xhttp.send(data);
     }
-    el.cookie = (key, value, maxAge)=>{
+    el.cookie = function(key, value, maxAge){
         if(typeof value !== 'undefined'){
             document.cookie = encodeURIComponent(key)+"="+encodeURIComponent(value)+"; path=/; max-age="+(value == null?0:maxAge);
             return true;
@@ -139,14 +145,14 @@ var showHideMemory = {};
         });
         return cookieReturn;
     }
-    el.location = (url)=>{
+    el.location = function(url){
         if(typeof url === 'undefined') return location.href;
         location.href = url;
     }
-    el.reload = ()=>{
+    el.reload = function(){
         location.reload();
     }
-    el.urlParam = (param)=>{
+    el.urlParam = function(param){
         var searchParams = new URLSearchParams(location.search);
         if(typeof param === "undefined"){
             var paramObj = {};
