@@ -5,16 +5,61 @@ el-alert-container
     margin: 10px;
     width: calc(100vw - 20px);
     height: 96px;
-    background-color: grey;
     z-index: 999;
     left: 0;
+    font-size: 22px;
+    background-color: darkgray;
+    text-align: center;
+}
+el-alert-container[loc='top']{
+    top: 0;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
+}
+el-alert-container[loc='bottom']{
+    bottom: 0;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: flex-end;
+}
+el-alert-container[pos='left']{
+    justify-content: flex-start;
+}
+el-alert-container[pos='right']{
+    justify-content: flex-end;
 }
 el-alert
 { 
     display: block;
-    background-color: green;
+    background-color: #34a853;
     height: 100%;
     width: 80%;
     max-width: 768px;
+    cursor: pointer;
+    margin: 4px;
+    opacity:0;
+} 
+el-alert:hover{
+    opacity: 0.5;
+}
+el-alert[type='success']{
+	background-color: #34a853;
+}
+el-alert[type='error']{
+	background-color: #ea4335;
+}
+el-alert[type='warning']{
+	background-color: #fbbc05;
+}
+el-alert[type='info']{
+	background-color: #4285f4;
+}
+.el-fade-in{
+    opacity: 1;
+    transition: opacity 1000ms;
+}
+.el-fade-out{
+    opacity: 0;
+    transition: opacity 1000ms;
 }

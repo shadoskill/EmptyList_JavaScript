@@ -1,4 +1,5 @@
 var showHideMemory = {};
+var alertList = {};
 (function(){
     var constructor = function(selector){
         this.selector = selector;
@@ -101,6 +102,14 @@ var showHideMemory = {};
                 element.remove();
             });
             return this;
+        },
+        fadeIn(){
+            this.addClass("el-fade-in");
+            return this;
+        },
+        fadeOut(){
+            this.addClass("el-fade-out");
+            return this;
         }
     };
 
@@ -168,6 +177,59 @@ var showHideMemory = {};
             return paramObj;
         }
         return searchParams.get(param);
+    }
+    el.alert = function(args){
+        var opt = {
+            msg:"This is a message!",
+            type:"success",
+            fade:true,
+            autoHide:false,
+            autoHideTime:10000,
+            closeOnClick:true,
+            loc:"top",
+            pos:"center",
+            ...args
+        };
+        if(!opt.autoHide && !opt.closeOnClick){
+            opt.closeOnClick = true;
+        }
+        if(el("el-alert-container").query.length == 0){
+            el("body").append("<el-alert-container pos='"+opt.pos+"' loc='"+opt.loc+"'></el-alert-container>");
+        }
+        var mTime = window.performance.now()+"";
+        var elAlertID = "el-alert-"+mTime.split(".")[1];
+        el("el-alert-container").append("<el-alert id='"+elAlertID+"' type='"+opt.type+"' close-on-click='"+(opt.closeOnClick?"true":"false")+"'>"+opt.msg+elAlertID+"</el-alert>");
+        if(opt.fade){
+            setTimeout(() => {
+                el("#"+elAlertID).addClass("el-fade-in");
+            }, 100);
+        }
+        if(opt.autoHide){
+            alertList[elAlertID] = setTimeout(()=>{
+                clearAlert(elAlertID);
+            }, opt.autoHideTime);
+        }
+        el("el-alert[close-on-click='true']").on("click", function(){
+            clearAlert(this.id);
+        });
+        el("el-alert").on("transitionend", function(){
+        });
+        function clearAlert(id){
+            if(opt.fade){
+                el("#"+id).removeClass("el-fade-in");
+                el("#"+id).addClass("el-fade-out");
+            }
+            setTimeout(() => {
+                el("body #"+id).remove();
+                if(opt.autoHide){
+                    clearTimeout(alertList[id]);
+                    delete alertList[id];
+                }
+                if(el("el-alert-container").html() == ""){
+                    el("el-alert-container").remove();
+                }
+            }, opt.fade*1000);
+        }
     }
     window.el = el;
 }());
