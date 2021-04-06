@@ -213,7 +213,7 @@ var alertList = {};
         }
         var mTime = window.performance.now()+"";
         var elAlertID = "el-alert-"+mTime.split(".")[1];
-        el("el-alert-container").append("<el-alert id='"+elAlertID+"' type='"+opt.type+"' close-on-click='"+(opt.closeOnClick?"true":"false")+"'>"+opt.msg+elAlertID+"</el-alert>");
+        el("el-alert-container").append("<el-alert id='"+elAlertID+"' type='"+opt.type+"' close-on-click='"+(opt.closeOnClick?"true":"false")+"'>"+opt.msg+"</el-alert>");
         if(opt.fade){
             setTimeout(() => {
                 el("#"+elAlertID).addClass("el-fade-in");
