@@ -154,7 +154,11 @@ var alertList = {};
         }
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = ()=>{
-            if(xhttp.readyState == 4) fn(xhttp.response);
+            if(xhttp.readyState == 4){
+                if(typeof fn === "function"){
+                    fn(xhttp.response);
+                }
+            }
         }
         xhttp.open("POST", url, true);
         xhttp.setRequestHeader("Content-type", ct);
