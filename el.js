@@ -54,9 +54,12 @@ var alertList = {};
             delete showHideMemory[this.selector];
             return this;
         },
-        submit:function(){
-            this.query[0].submit();
-            return this;
+        submit:function(fn){
+            if(typeof fn === "undefined"){
+                this.query[0].submit();
+                return this;
+            }        
+            return this.on("submit", fn);
         },
         html:function(html){
             if(typeof html === "undefined"){
