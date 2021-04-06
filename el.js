@@ -122,6 +122,9 @@ var alertList = {};
                 element.setAttribute(name, value);
             });
             return this;
+        },
+        serialize:function(){
+            return Object.fromEntries(new FormData(this.query[0]).entries());
         }
     };
 
