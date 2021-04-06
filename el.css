@@ -8,7 +8,6 @@ el-alert-container
     z-index: 999;
     left: 0;
     font-size: 22px;
-    background-color: darkgray;
     text-align: center;
 }
 el-alert-container[loc='top']{
