@@ -103,11 +103,11 @@ var alertList = {};
             });
             return this;
         },
-        fadeIn(){
+        fadeIn:function(){
             this.addClass("el-fade-in");
             return this;
         },
-        fadeOut(){
+        fadeOut:function(){
             this.addClass("el-fade-out");
             return this;
         }
