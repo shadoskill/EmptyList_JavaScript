@@ -110,6 +110,15 @@ var alertList = {};
         fadeOut:function(){
             this.addClass("el-fade-out");
             return this;
+        },
+        attr:function(name, value){
+            if(typeof value === "undefined"){
+                return this.query[0].getAttribute(name);
+            }
+            this.query.forEach((element)=>{
+                element.setAttribute(name, value);
+            });
+            return this;
         }
     };
 
