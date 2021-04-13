@@ -250,5 +250,17 @@ var alertList = {};
             }, opt.fade*1000);
         }
     }
+    el.each = function(args, fn){
+        if(Array.isArray(args)){
+            args.forEach(fn);
+            return;
+        }
+        if(typeof args === "object"){
+            for(let [k, v] of Object.entries(args)){
+                fn(k, v);
+            }
+            return;
+        }
+    }
     window.el = el;
 }());
