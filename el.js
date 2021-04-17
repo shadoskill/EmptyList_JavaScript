@@ -8,6 +8,7 @@ var alertList = {};
     constructor.prototype = {
         on:function(event, fn){
             this.query.forEach((element)=>{
+                this.id = "asasd"
                 element.addEventListener(event, fn);
             });
             return this;
@@ -125,6 +126,14 @@ var alertList = {};
         },
         serialize:function(){
             return Object.fromEntries(new FormData(this.query[0]).entries());
+        },
+        value:function(value){
+            if(typeof value === "undefined"){
+                return this.query[0].value;
+            }
+            this.query.forEach((element)=>{
+                element.value = value;
+            });
         }
     };
 
