@@ -13,6 +13,10 @@ var alertList = {};
             });
             return this;
         },
+        click:function(fn){
+            this.on("click", fn);
+            return this;
+        },
         data:function(args){
             if(typeof args === 'string'){
                 return this.query[0].dataset[args];
