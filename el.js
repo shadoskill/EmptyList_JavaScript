@@ -8,7 +8,6 @@ var alertList = {};
     constructor.prototype = {
         on:function(event, fn){
             this.query.forEach((element)=>{
-                this.id = "asasd"
                 element.addEventListener(event, fn);
             });
             return this;
