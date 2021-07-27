@@ -1,4 +1,3 @@
-var showHideMemory = {};
 var alertList = {};
 (function(){
     var constructor = function(selector){
@@ -35,7 +34,7 @@ var alertList = {};
         },
         css:function(args){
             if(typeof args === 'string'){
-                return this.query[0].style[args];
+                return window.getComputedStyle(this.query[0])[args];
             }
             else if(typeof args === 'object'){
                 const cssArgs = Object.entries(args);
@@ -48,14 +47,16 @@ var alertList = {};
             }            
         },
         hide:function(){
-            showHideMemory[this.selector] = this.css('display');
-            this.css({'display':'none'});
+            var currentDisplay = this.css('display');
+            if(currentDisplay != 'none'){
+                this.data({display:currentDisplay});
+                this.css({'display':'none'});
+            }
             return this;
         },
         show:function(){
-            var savedDisplayType = showHideMemory[this.selector];
+            var savedDisplayType = this.data('display');
             this.css({'display':((savedDisplayType != "")?savedDisplayType:"block")});
-            delete showHideMemory[this.selector];
             return this;
         },
         submit:function(fn){
