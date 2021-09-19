@@ -278,7 +278,7 @@ var alertList = {};
     el.getStyleVar = function(name){
         var style = getComputedStyle(document.documentElement).getPropertyValue(name);
         if(style == "") return false;
-        return style;
+        return style.replace(/\s+/g, '');
     }
     el.setStyleVar = function(name, value){
         var style = document.documentElement.style.setProperty(name, value);
