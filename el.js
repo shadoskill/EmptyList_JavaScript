@@ -275,5 +275,15 @@ var alertList = {};
             return;
         }
     }
+    el.getStyleVar = function(name){
+        var style = getComputedStyle(document.documentElement).getPropertyValue(name);
+        if(style == "") return false;
+        return style;
+    }
+    el.setStyleVar = function(name, value){
+        var style = document.documentElement.style.setProperty(name, value);
+        if(typeof style === "undefined") return false;
+        return true;
+    }
     window.el = el;
 }());
