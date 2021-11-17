@@ -86,7 +86,7 @@ var alertList = {};
         },
         addClass:function(className){
             this.query.forEach((element)=>{
-                element.classList.add(className);
+                if(!this.hasClass(className)) element.classList.add(className);
             });
             return this;
         },
@@ -95,6 +95,9 @@ var alertList = {};
                 element.classList.remove(className);
             });
             return this;
+        },
+        hasClass:function(className){
+            return this.query[0].classList.contains(className);
         },
         insert:function(position, html){
             this.query.forEach((element)=>{
@@ -112,10 +115,12 @@ var alertList = {};
             return this;
         },
         fadeIn:function(){
+            this.removeClass("el-fade-out");
             this.addClass("el-fade-in");
             return this;
         },
         fadeOut:function(){
+            this.removeClass("el-fade-in");
             this.addClass("el-fade-out");
             return this;
         },
@@ -284,6 +289,32 @@ var alertList = {};
         var style = document.documentElement.style.setProperty(name, value);
         if(typeof style === "undefined") return false;
         return true;
+    }
+    el.inView = function(element, percent){
+        let rect = element.getBoundingClientRect(), windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+        return !(Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-rect.height) * 100)) < percent || Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percent);
+    }
+    el.imageSwap = function(rate, percent){
+        setInterval(() => {
+            el.each(el(".el-image-swap").query, function(id, element){
+                if(el.inView(element, percent)){
+                    let id = element.id;
+                    el("#"+id).fadeOut();
+                    setTimeout(() => {
+                        element.addEventListener("load", ()=>{
+                            setTimeout(() => {
+                                el("#"+id).fadeIn();
+                            }, 500);
+                        });
+                        setTimeout(() => {
+                            el("#"+id).attr("src", el("#"+id).data("load"));
+                            el("#"+id).removeClass("el-image-swap");
+                        }, 500);
+                    }, 500);
+                    
+                }
+            }); 
+        }, rate);
     }
     window.el = el;
 }());

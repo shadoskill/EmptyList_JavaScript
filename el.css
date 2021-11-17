@@ -56,9 +56,9 @@ el-alert[type='info']{
 }
 .el-fade-in{
     opacity: 1;
-    transition: opacity 1000ms;
+    transition: opacity 500ms;
 }
 .el-fade-out{
     opacity: 0;
-    transition: opacity 1000ms;
+    transition: opacity 500ms;
 }
