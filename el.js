@@ -287,7 +287,7 @@ var alertList = {};
         }
         if(typeof args === "string"){
             for(let [k, v] of Object.entries(el(args).query)){
-                fn(v);
+                fn(k, v);
             }
         }
     }
