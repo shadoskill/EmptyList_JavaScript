@@ -2,6 +2,9 @@ var alertList = {};
 (function(){
     var constructor = function(selector){
         this.selector = selector;
+        if(typeof this.selector === 'object'){
+            this.selector = "#"+this.selector.id;
+        }
         this.query = document.querySelectorAll(this.selector);
     };
     constructor.prototype = {
@@ -17,6 +20,9 @@ var alertList = {};
         },
         data:function(args){
             if(typeof args === 'string'){
+                if(this.query[0].hasAttribute('data-'+args) === false){
+                    return null;
+                }
                 return this.query[0].dataset[args];
             }
             else if(typeof args === 'object'){
@@ -278,6 +284,11 @@ var alertList = {};
                 fn(k, v);
             }
             return;
+        }
+        if(typeof args === "string"){
+            for(let [k, v] of Object.entries(el(args).query)){
+                fn(v);
+            }
         }
     }
     el.getStyleVar = function(name){
