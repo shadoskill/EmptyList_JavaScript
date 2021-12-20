@@ -1,7 +1,7 @@
 el-alert-container
 {
     display: flex;
-    position: absolute;
+    position: fixed;
     margin: 10px;
     width: calc(100vw - 20px);
     height: 96px;
