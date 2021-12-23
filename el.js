@@ -3,12 +3,12 @@ var alertList = {};
     var constructor = function(selector){
         this.selector = selector;
         if(typeof this.selector === 'object'){
-            this.selector = "#"+this.selector.id;
+            this.query = [this.selector]
         }
         else if(selector.charAt(0) == "."){
             this.selector = selector.replaceAll(' ', '.');
         }        
-        this.query = document.querySelectorAll(this.selector);
+        if(this.query === undefined) this.query = document.querySelectorAll(this.selector);
     };
     constructor.prototype = {
         on:function(event, fn){
