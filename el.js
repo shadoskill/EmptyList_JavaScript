@@ -2,12 +2,12 @@ var alertList = {};
 (function(){
     var constructor = function(selector){
         this.selector = selector;
-        if(selector.charAt(0) == "."){
-            this.selector = selector.replaceAll(' ', '.');
-        }
         if(typeof this.selector === 'object'){
             this.selector = "#"+this.selector.id;
         }
+        if(selector.charAt(0) == "."){
+            this.selector = selector.replaceAll(' ', '.');
+        }        
         this.query = document.querySelectorAll(this.selector);
     };
     constructor.prototype = {
