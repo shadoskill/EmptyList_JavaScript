@@ -5,7 +5,7 @@ var alertList = {};
         if(typeof this.selector === 'object'){
             this.selector = "#"+this.selector.id;
         }
-        if(selector.charAt(0) == "."){
+        else if(selector.charAt(0) == "."){
             this.selector = selector.replaceAll(' ', '.');
         }        
         this.query = document.querySelectorAll(this.selector);
