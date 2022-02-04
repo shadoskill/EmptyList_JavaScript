@@ -326,32 +326,6 @@ var alertList = {};
         if(typeof style === "undefined") return false;
         return true;
     }
-    // el.inView = function(element, percent){
-    //     let rect = element.getBoundingClientRect(), windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-    //     return !(Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-rect.height) * 100)) < percent || Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percent);
-    // }
-    // el.imageSwap = function(rate, percent){
-    //     setInterval(() => {
-    //         el.each(el(".el-image-swap").query, function(id, element){
-    //             if(el.inView(element, percent)){
-    //                 let id = element.id;
-    //                 el("#"+id).fadeOut();
-    //                 setTimeout(() => {
-    //                     element.addEventListener("load", ()=>{
-    //                         setTimeout(() => {
-    //                             el("#"+id).fadeIn();
-    //                         }, 500);
-    //                     });
-    //                     setTimeout(() => {
-    //                         el("#"+id).attr("src", el("#"+id).data("load"));
-    //                         el("#"+id).removeClass("el-image-swap");
-    //                     }, 500);
-    //                 }, 500);
-                    
-    //             }
-    //         }); 
-    //     }, rate);
-    // }
     el.imageSwap = function(percent){
         percent /= 100;
         const observer = new IntersectionObserver(entries=>{
