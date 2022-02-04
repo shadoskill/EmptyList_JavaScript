@@ -128,11 +128,14 @@ var alertList = {};
             if(typeof className !== 'array'){
                 className = className.replaceAll('.', '').split(' ');
             }
+            var result = false;
             className.forEach((name)=>{
                 if(this.query[0].classList.contains(name)){
-                    return true;
+                    result = true;
+                    break;
                 }
             });
+            return result;
         },
         insert:function(position, html){
             this.query.forEach((element)=>{
