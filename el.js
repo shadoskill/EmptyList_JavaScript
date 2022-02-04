@@ -124,8 +124,7 @@ var alertList = {};
         },
         hasClass:function(className){
             if(typeof className !== 'array'){
-                className.replaceAll('.', '');
-                className = className.split(' ');
+                className = className.replaceAll('.', '').split(' ');
             }
             className.forEach((name)=>{
                 if(this.query[0].classList.contains(name)){
