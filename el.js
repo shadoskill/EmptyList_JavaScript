@@ -123,14 +123,16 @@ var alertList = {};
             return this;
         },
         hasClass:function(className){
-            if(typeof className !== 'array'){
-                className = className.replaceAll('.', '').split(' ');
-            }
-            className.forEach((name)=>{
-                if(this.query[0].classList.contains(name)){
-                    return true;
+            if(typeof this.query[0].classList !== 'undefined'){
+                if(typeof className !== 'array'){
+                    className = className.replaceAll('.', '').split(' ');
                 }
-            });
+                className.forEach((name)=>{
+                    if(this.query[0].classList.contains(name)){
+                        return true;
+                    }
+                });
+            }
             return false;
         },
         insert:function(position, html){
