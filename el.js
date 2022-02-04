@@ -123,17 +123,16 @@ var alertList = {};
             return this;
         },
         hasClass:function(className){
-            if(typeof this.query[0].classList !== null){
-                if(typeof className !== 'array'){
-                    className = className.replaceAll('.', '').split(' ');
-                }
-                className.forEach((name)=>{
-                    if(this.query[0].classList.contains(name)){
-                        return true;
-                    }
-                });
+            if(typeof this.query[0].classList === 'undefined') return false;
+            if(this.query[0].classList === null) return false;
+            if(typeof className !== 'array'){
+                className = className.replaceAll('.', '').split(' ');
             }
-            return false;
+            className.forEach((name)=>{
+                if(this.query[0].classList.contains(name)){
+                    return true;
+                }
+            });
         },
         insert:function(position, html){
             this.query.forEach((element)=>{
