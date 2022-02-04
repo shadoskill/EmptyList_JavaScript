@@ -55,7 +55,7 @@ var alertList = {};
                 return this;
             }            
         },
-        toggle:function(class1, class2){
+        toggleClass:function(class1, class2){
             this.query.forEach((element)=>{
                 if(this.hasClass(class1)){
                     this.removeClass(class1);
