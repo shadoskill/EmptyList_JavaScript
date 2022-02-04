@@ -55,6 +55,19 @@ var alertList = {};
                 return this;
             }            
         },
+        toggle:function(class1, class2){
+            this.query.forEach((element)=>{
+                if(this.hasClass(class1)){
+                    this.removeClass(class1);
+                    this.addClass(class2);
+                }
+                else{
+                    this.removeClass(class2);
+                    this.addClass(class1);
+                }
+            });
+            return this;
+        },
         hide:function(){
             var currentDisplay = this.css('display');
             if(currentDisplay != 'none'){
