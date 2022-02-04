@@ -132,7 +132,6 @@ var alertList = {};
             className.forEach((name)=>{
                 if(this.query[0].classList.contains(name)){
                     result = true;
-                    break;
                 }
             });
             return result;
