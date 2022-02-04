@@ -107,15 +107,19 @@ var alertList = {};
             return this;
         },
         addClass:function(className){
-            this.query.forEach((element)=>{
-                if(!this.hasClass(className)) element.classList.add(className);
-            });
+            if(className != ""){
+                this.query.forEach((element)=>{
+                    if(!this.hasClass(className)) element.classList.add(className);
+                });
+            }
             return this;
         },
         removeClass:function(className){
-            this.query.forEach((element)=>{
-                element.classList.remove(className);
-            });
+            if(className != ""){
+                this.query.forEach((element)=>{
+                    element.classList.remove(className);
+                });
+            }
             return this;
         },
         hasClass:function(className){
@@ -326,7 +330,6 @@ var alertList = {};
         if(typeof style === "undefined") return false;
         return true;
     }
-    
     el.imageSwap = function(percent){
         percent /= 100;
         const observer = new IntersectionObserver(entries=>{
