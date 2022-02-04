@@ -119,7 +119,16 @@ var alertList = {};
             return this;
         },
         hasClass:function(className){
-            return this.query[0].classList.contains(className);
+            if(typeof className !== 'array'){
+                className.replaceAll('.', '');
+                className = className.split(' ');
+            }
+            className.forEach((name)=>{
+                if(this.query[0].classList.contains(name)){
+                    return true;
+                }
+            });
+            return false;
         },
         insert:function(position, html){
             this.query.forEach((element)=>{
