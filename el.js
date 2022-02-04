@@ -326,6 +326,7 @@ var alertList = {};
         if(typeof style === "undefined") return false;
         return true;
     }
+    
     el.imageSwap = function(percent){
         percent /= 100;
         const observer = new IntersectionObserver(entries=>{
