@@ -123,7 +123,7 @@ var alertList = {};
             return this;
         },
         hasClass:function(className){
-            if(typeof this.query[0].classList !== 'undefined'){
+            if(typeof this.query[0].classList !== null){
                 if(typeof className !== 'array'){
                     className = className.replaceAll('.', '').split(' ');
                 }
