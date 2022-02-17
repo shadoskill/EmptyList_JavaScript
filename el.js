@@ -115,11 +115,16 @@ var alertList = {};
             return this;
         },
         removeClass:function(className){
-            if(className != ""){
+            if(className == "") return this;
+            if(className == "*"){
                 this.query.forEach((element)=>{
-                    element.classList.remove(className);
+                    element.classList = [];
                 });
+                return this;
             }
+            this.query.forEach((element)=>{
+                element.classList.remove(className);
+            });            
             return this;
         },
         hasClass:function(className){
