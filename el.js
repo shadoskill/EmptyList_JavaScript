@@ -337,7 +337,7 @@ var alertList = {};
         if(typeof style === "undefined") return false;
         return true;
     }
-    el.imageSwap = function(percent){
+    el.imageSwap = function(percent = 5, rootMargin = ''){
         percent /= 100;
         const observer = new IntersectionObserver(entries=>{
             el.each(entries, function(entry, k){
@@ -351,7 +351,10 @@ var alertList = {};
                     observer.unobserve(entry.target);                    
                 }
             });
-        },{threshold:percent});
+        },{
+            threshold:percent,
+            rootMargin:rootMargin
+        });
         el.each(el(".el-image-swap").query, function(id, element){
             observer.observe(element);
         });       
