@@ -359,5 +359,14 @@ var alertList = {};
             observer.observe(element);
         });       
     }
+    el.objectFlip = function(obj){
+        return Object.keys(obj).reduce((ret, key)=>{
+            ret[obj[key]] = key;
+            return ret;
+        }, {});
+    }
+    el.objectSort = function(obj, selector){
+        return obj.sort((a, b) => (a[selector] > b[selector]) ? 1 : -1);
+    }
     window.el = el;
 }());
