@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../el.css">
+    <style>
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
+</head>
+<body class="green">
+    <div id="id1" src="aaaa" class="test" >aaa</div>
+    <div id="id2" src="bbbb" class="test cats">bbb</div>
+    <button>Alert</button>
+    <select name="aaa" id="rev">
+        <option data-aaa="aaaa" class="test" value="o1">o1</option>
+        <option data-aaa="aaaa" class="test" value="o2">o2</option>
+    </select>
+    <br>
+    <iframe class="gdpr" height="500" width="500" data-gdprswap="http://soundcloud.com/discover" src="http://hud.emptylist.co/"></iframe>
+    <br>
+    <span class="gdpr-link"><a target="_BLANK" src="http://soundcloud.com/user/here">View on soundcloud</a></span>
+</body>
+<script src="../el.js"></script>
+<script>
+    console.log(localStorage)
+    function alert_success(smsg){
+        alert(smsg, "success", 2500);
+    }
+    function alert_error(smsg){
+        alert(smsg, "error", 5000);
+    }
+    function alert_warning(smsg){
+        alert(smsg, "warning", 4000);
+    }
+    function alert(smsg, alerttype, alertTime){
+        el.alert({ msg: smsg, type: alerttype, autoHide: false, autoHideTime: alertTime, loc:"top"});
+    }
+    el.ready(()=>{
+        console.log(localStorage)
+        el.gdprcheck({
+                msg:"Do you accept cookies, if you don't your a monster."
+            }, function(data){
+        });
+    });
+</script>
+</html>

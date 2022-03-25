@@ -382,7 +382,7 @@ var alertList = {};
         if(acceptGDPR === null){
             el.alert({                
                 msg:
-                    "<p>"+args.msg+"</p>"+
+                    "<p>"+opt.msg+"</p>"+
                     "<button id='gdprAccept'>"+opt.btnA+"</button>"+
                     "<button id='gdprDeny'>"+opt.btnD+"</button>",
                 type:"gdpr",         
