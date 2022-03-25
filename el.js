@@ -267,13 +267,14 @@ var alertList = {};
             closeOnClick:true,
             loc:"top",
             pos:"center",
+            containerClass:"",
             ...args
         };
         if(!opt.autoHide && !opt.closeOnClick){
             opt.closeOnClick = true;
         }
         if(el("el-alert-container").query.length == 0){
-            el("body").append("<el-alert-container pos='"+opt.pos+"' loc='"+opt.loc+"'></el-alert-container>");
+            el("body").append("<el-alert-container class='"+opt.containerClass+"' pos='"+opt.pos+"' loc='"+opt.loc+"'></el-alert-container>");
         }
         var mTime = window.performance.now()+"";
         var elAlertID = "el-alert-"+mTime.split(".")[1];
@@ -372,6 +373,11 @@ var alertList = {};
         return obj.sort((a, b) => (a[selector] > b[selector]) ? 1 : -1);
     }
     el.gdprcheck = function(args, gdprAcceptFn){
+        el.each(el("el-alert").query, function(k, element){
+            if(el(element).attr("type") == "gdpr"){
+                el(element).remove();
+            }
+        });
         var opt = {
             msg:"Accept cookies?",
             btnA:"Accept",
@@ -382,9 +388,9 @@ var alertList = {};
         if(acceptGDPR === null){
             el.alert({                
                 msg:
+                    "<button id='gdprDeny'>"+opt.btnD+"</button>"+
                     "<p>"+opt.msg+"</p>"+
-                    "<button id='gdprAccept'>"+opt.btnA+"</button>"+
-                    "<button id='gdprDeny'>"+opt.btnD+"</button>",
+                    "<button id='gdprAccept'>"+opt.btnA+"</button>",                    
                 type:"gdpr",         
                 closeOnClick:false,
                 loc:"bottom",
