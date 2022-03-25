@@ -283,6 +283,9 @@ var alertList = {};
                 el("#"+elAlertID).addClass("el-fade-in");
             }, 100);
         }
+        else{
+            el("#"+elAlertID).addClass("el-fade-none");
+        }
         if(opt.autoHide){
             alertList[elAlertID] = setTimeout(()=>{
                 clearAlert(elAlertID);
@@ -367,6 +370,56 @@ var alertList = {};
     }
     el.objectSort = function(obj, selector){
         return obj.sort((a, b) => (a[selector] > b[selector]) ? 1 : -1);
+    }
+    el.gdprcheck = function(args, gdprAcceptFn){
+        var opt = {
+            msg:"Accept cookies?",
+            btnA:"Accept",
+            btnD:"Deny",
+            ...args
+        };
+        let acceptGDPR = localStorage.getItem("gdprcheck");
+        if(acceptGDPR === null){
+            el.alert({                
+                msg:
+                    "<p>"+args.msg+"</p>"+
+                    "<button id='gdprAccept'>"+opt.btnA+"</button>"+
+                    "<button id='gdprDeny'>"+opt.btnD+"</button>",
+                type:"gdpr",         
+                closeOnClick:false,
+                loc:"bottom",
+                fade:false
+            });
+            el("#gdprAccept").click(function(){
+                localStorage.setItem("gdprcheck", 1);  
+                el.gdprAccept();
+                if(typeof gdprAcceptFn === 'function'){
+                    gdprAcceptFn();
+                }
+            });
+            el("#gdprDeny").click(function(){
+                localStorage.setItem("gdprcheck", 0);  
+            });
+            return;
+        }
+        if(Number(acceptGDPR) === 0){
+            return;
+        }
+        if(Number(acceptGDPR) === 1){
+            el.gdprAccept();
+            return;
+        }        
+    }
+    el.gdprAccept = function(){
+        el.each(el(".gdpr").query, function(k, element){
+            let data = el(element).data("gdprswap");
+            if(data !== null){
+                el(element).attr("src", data);
+            }
+        });
+        el.each(el(".gdpr-link").query, function(k, element){
+            el(element).html("");
+        });
     }
     window.el = el;
 }());

@@ -54,6 +54,23 @@ el-alert[type='warning']{
 el-alert[type='info']{
 	background-color: #4285f4;
 }
+el-alert[type='gdpr']{
+	background-color: #4285f4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+}
+el-alert:hover{
+	opacity: 1;
+}
+el-alert[type='gdpr'] p{
+    grid-column: 1/-1;
+    margin: 0;
+    padding: 0;
+}
+.el-fade-none{
+    opacity: 1;
+}
 .el-fade-in{
     opacity: 1;
     transition: opacity 500ms;
