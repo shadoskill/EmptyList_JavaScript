@@ -410,10 +410,16 @@ var alertList = {};
                 localStorage.setItem("gdprcheck", 1);  
                 el.gdprAccept(gdprAcceptFn);
                 el("#"+idAlert).remove();
+                if(el("el-alert-container").html() == ""){
+                    el("el-alert-container").remove();
+                }
             });
             el("#gdprDeny").click(function(){
                 localStorage.setItem("gdprcheck", 0);  
                 el("#"+idAlert).remove();
+                if(el("el-alert-container").html() == ""){
+                    el("el-alert-container").remove();
+                }
             });
             return;
         }

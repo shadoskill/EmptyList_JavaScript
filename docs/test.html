@@ -13,12 +13,16 @@
         .green{
             background-color: green;
         }
+        el-alert-container{
+            background-color: black!important;
+            margin: 0px!important;
+        }
     </style>
 </head>
 <body class="green">
     <div id="id1" src="aaaa" class="test" >aaa</div>
     <div id="id2" src="bbbb" class="test cats">bbb</div>
-    <button>Alert</button>
+    <button id="showGDPR">Alert</button>
     <select name="aaa" id="rev">
         <option data-aaa="aaaa" class="test" value="o1">o1</option>
         <option data-aaa="aaaa" class="test" value="o2">o2</option>
@@ -44,6 +48,13 @@
         el.alert({ msg: smsg, type: alerttype, autoHide: false, autoHideTime: alertTime, loc:"top"});
     }
     el.ready(()=>{
+        el("#showGDPR").click(function(){
+            localStorage.clear();
+            el.gdprcheck({
+                msg:"Do you accept cookies, if you don't your a monster."
+            }, function(data){
+        });
+        });
         console.log(localStorage)
         el.gdprcheck({
                 msg:"Do you accept cookies, if you don't your a monster."
