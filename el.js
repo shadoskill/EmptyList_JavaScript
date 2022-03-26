@@ -268,10 +268,11 @@ var alertList = {};
             loc:"top",
             pos:"center",
             containerClass:"",
+            sticky:false,
             ...args
         };
         if(!opt.autoHide && !opt.closeOnClick){
-            opt.closeOnClick = true;
+            opt.closeOnClick = !opt.sticky;
         }
         if(el("el-alert-container").query.length == 0){
             el("body").append("<el-alert-container class='"+opt.containerClass+"' pos='"+opt.pos+"' loc='"+opt.loc+"'></el-alert-container>");
@@ -401,7 +402,8 @@ var alertList = {};
                 type:"gdpr",         
                 closeOnClick:false,
                 loc:"bottom",
-                fade:false
+                fade:false,
+                sticky:true
             });
             el("#gdprAccept").click(function(){
                 localStorage.setItem("gdprcheck", 1);  
