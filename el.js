@@ -314,6 +314,7 @@ var alertList = {};
                 }
             }, opt.fade*1000);
         }
+        return elAlertID;
     }
     el.each = function(args, fn){
         if(Array.isArray(args)){
@@ -394,7 +395,7 @@ var alertList = {};
         };
         let acceptGDPR = localStorage.getItem("gdprcheck");
         if(acceptGDPR === null){
-            el.alert({                
+            var idAlert = el.alert({                
                 msg:
                     "<button id='gdprDeny'>"+opt.btnD+"</button>"+
                     "<p>"+opt.msg+"</p>"+
@@ -408,9 +409,11 @@ var alertList = {};
             el("#gdprAccept").click(function(){
                 localStorage.setItem("gdprcheck", 1);  
                 el.gdprAccept(gdprAcceptFn);
+                el("#"+idAlert).remove();
             });
             el("#gdprDeny").click(function(){
                 localStorage.setItem("gdprcheck", 0);  
+                el("#"+idAlert).remove();
             });
             return;
         }
