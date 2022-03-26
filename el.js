@@ -193,7 +193,7 @@ var alertList = {};
     };
     el.ready = function(fn){
         if(typeof fn === 'function'){
-            document.addEventListener("DOMContentLoaded", fn);
+            window.addEventListener("load", fn);
         }        
     }
     el.get = function(url, fn){
