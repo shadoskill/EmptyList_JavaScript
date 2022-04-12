@@ -183,7 +183,7 @@ var alertList = {};
                 return this.query[0].value;
             }
             this.query.forEach((element)=>{
-                element.value = value;
+                element.defaultValue = value;
             });
         }
     };
@@ -447,6 +447,29 @@ var alertList = {};
     }
     el.getRandomInteger = function(min, max){
         return Math.floor(Math.random() * (max - min) ) + min;
+    }
+    el.storageGet = function(key){
+        let value = localStorage[key];
+        return (value === undefined?null:(el.isJson(value)?JSON.parse(value):value));
+    }
+    el.storageSet = function(key, value){
+        if(this.isJson(value)){
+            value = JSON.stringify(value);
+        }
+        localStorage[key] = value;
+    }
+    el.storageClear = function(){
+        localStorage.clear();
+    }
+    el.isJson = function(item){
+        item = typeof item !== "string"?JSON.stringify(item):item;
+        try{
+            item = JSON.parse(item);
+        } 
+        catch(e){
+            return false;
+        }
+        return (typeof item === "object" && item !== null);
     }
     window.el = el;
 }());
