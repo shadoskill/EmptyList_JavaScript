@@ -170,6 +170,12 @@ var alertList = {};
             if(typeof value === "undefined"){
                 return this.query[0].getAttribute(name);
             }
+            if(value === null){
+                this.query.forEach((element)=>{
+                    element.removeAttribute(name);
+                });
+                return this;
+            }
             this.query.forEach((element)=>{
                 element.setAttribute(name, value);
             });
