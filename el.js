@@ -191,6 +191,9 @@ var alertList = {};
             this.query.forEach((element)=>{
                 element.defaultValue = value;
             });
+        },
+        hasScrollbar:function(){
+            return this.query[0].scrollHeight > this.query[0].clientHeight;
         }
     };
 
