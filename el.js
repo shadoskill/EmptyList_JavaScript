@@ -183,11 +183,12 @@ var alertList = {};
         },
         prop:function(name, value){
             if(typeof value === "undefined"){
-                return this.query[0][value];
+                return this.query[0][name];
             }       
             this.query.forEach((element)=>{
                 element[name] = value;
             });     
+            return this;
         },
         serialize:function(){
             return Object.fromEntries(new FormData(this.query[0]).entries());
