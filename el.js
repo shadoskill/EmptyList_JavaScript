@@ -181,6 +181,14 @@ var alertList = {};
             });
             return this;
         },
+        prop:function(name, value){
+            if(typeof value === "undefined"){
+                return this.query[0][value];
+            }       
+            this.query.forEach((element)=>{
+                element[name] = value;
+            });     
+        },
         serialize:function(){
             return Object.fromEntries(new FormData(this.query[0]).entries());
         },
