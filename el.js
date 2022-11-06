@@ -372,7 +372,12 @@ var alertList = {};
                         img.onload = function(){
                             entry.target.classList.add("el-fade-out");
                             entry.target.addEventListener('transitionend', ()=>{
-                                entry.target.src=newImg;
+                                if(entry.target.nodeName && entry.target.nodeName.toLowerCase() === "img"){
+                                    entry.target.src=newImg;
+                                }
+                                else{
+                                    el(entry.target).css({"background-image":`url("${newImg}")`});
+                                }
                                 entry.target.classList.remove("el-fade-out");
                                 entry.target.classList.add("el-fade-in");
                             });

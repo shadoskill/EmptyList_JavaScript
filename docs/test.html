@@ -17,80 +17,23 @@
             background-color: black!important;
             margin: 0px!important;
         }
+        div, img{
+            display: block;
+            background-image: url("https://mobilemarketingreads.com/wp-content/uploads/2020/09/google-updates-play-store-billing-policies.jpg");
+            width: 256px;
+            height: 256px;
+            background-size: 256px 256px;
+        }
     </style>
 </head>
 <body class="green">
+    <img class="el-image-swap" data-load="https://www.ilimit.com/wp-content/uploads/2021/05/google.jpg" src="https://mobilemarketingreads.com/wp-content/uploads/2020/09/google-updates-play-store-billing-policies.jpg" alt="">
+    <div class="el-image-swap" data-load="https://www.ilimit.com/wp-content/uploads/2021/05/google.jpg"></div>
 </body>
 <script src="../el.js"></script>
 <script>
-    function alert_success(smsg){
-        alert(smsg, "success", 2500);
-    }
-    function alert_error(smsg){
-        alert(smsg, "error", 5000);
-    }
-    function alert_warning(smsg){
-        alert(smsg, "warning", 4000);
-    }
-    function alert(smsg, alerttype, alertTime){
-        el.alert({ msg: smsg, type: alerttype, autoHide: false, autoHideTime: alertTime, loc:"top"});
-    }
     el.ready(()=>{
-        testLocalStorage();
+        el.imageSwap();
     });
-    function testLocalStorage(){
-        localStorage.clear();
-        console.log("Starting localStorage tests.");
-        let testString = "This is a string.";
-        let testObj = {key1:"value1", key2:"value2"};
-        let currentString;
-        let currentObj;
-
-        console.log("Reading current values.");
-        currentString = el.storageGet("testString");
-        currentObj = el.storageGet("testObj");
-        if(currentString !== null){
-            console.log("currentString was not null.", {expected:null, got:currentString});
-            return;
-        }
-        if(currentObj !== null){
-            console.log("currentObj was not null.", {expected:null, got:currentObj});
-            return;
-        }
-        console.log(currentString, currentObj);
-
-        console.log("Setting new values.");
-        el.storageSet("testString", testString);
-        el.storageSet("testObj", testObj);
-
-        console.log("Reading current values.");
-        currentString = el.storageGet("testString");
-        currentObj = el.storageGet("testObj");
-        if(JSON.stringify(currentString) !== JSON.stringify(testString)){
-            console.log("currentString was not saved properly.", {expected:testString, got:currentString});
-            return;
-        }
-        if(JSON.stringify(currentObj) !== JSON.stringify(testObj)){
-            console.log("currentObj was not saved properly.", {expected:testObj, got:currentObj});
-            return;
-        }
-        console.log(currentString, currentObj);
-
-        console.log("Clearing all values.");
-        el.storageClear();
-        console.log("Reading current values.");
-        currentString = el.storageGet("testString");
-        currentObj = el.storageGet("testObj");
-        if(currentString !== null){
-            console.log("currentString was not null.", {expected:null, got:currentString});
-            return;
-        }
-        if(currentObj !== null){
-            console.log("currentObj was not null.", {expected:null, got:currentObj});
-            return;
-        }
-        console.log(currentString, currentObj);
-        console.log("LocalStorage tests passes.");
-    }
 </script>
 </html>
