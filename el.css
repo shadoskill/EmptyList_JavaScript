@@ -1,7 +1,7 @@
 el-alert-container
 {
     display: flex;
-    position: absolute;
+    position: fixed;
     margin: 10px;
     width: calc(100vw - 20px);
     height: 96px;
@@ -53,6 +53,27 @@ el-alert[type='warning']{
 }
 el-alert[type='info']{
 	background-color: #4285f4;
+}
+el-alert[type='gdpr']{
+    margin: 0px;
+    max-width: 100vw;
+    width: 100%;
+	background-color: #4285f4;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+}
+el-alert:hover{
+	opacity: 1;
+}
+el-alert[type='gdpr'] p{
+    margin: 0;
+    padding: 0;
+}
+el-alert[type='gdpr'] button{
+    margin: 10%;
+}
+.el-fade-none{
+    opacity: 1;
 }
 .el-fade-in{
     opacity: 1;
